@@ -107,13 +107,15 @@
 		$scope.showAlerts = false;
 		$scope.emailTester=function(){
 			//validação do angular
+			console.log($scope.form.principal.validity.valid);
+			
 			if(!$scope.form.principal.$valid){
 				$scope.emailOk = false;
 				$scope.userNotExists = true;
 			}else{
 				//faz chamada ao servidor apenas se já passou no angular
-				console.log($scope.principal);
-				$scope.signUpResource.get({principal:$scope.principal}).$promise.then(function(data) {
+				console.log($scope.form.principal);
+				$scope.signUpResource.get({principal:$scope.form.principal}).$promise.then(function(data) {
 					$scope.emailOk = data.canCreate;
 					$scope.userNotExists = data.canCreate;
 				});
